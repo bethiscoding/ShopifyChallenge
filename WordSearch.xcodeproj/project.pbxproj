@@ -15,6 +15,12 @@
 		5244ED1F2502C44C00754BA6 /* WordSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244ED1E2502C44C00754BA6 /* WordSearch.swift */; };
 		5244ED232502C51500754BA6 /* WordSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244ED222502C51500754BA6 /* WordSearchController.swift */; };
 		5244ED262504231600754BA6 /* WordSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244ED252504231600754BA6 /* WordSearchViewController.swift */; };
+		5244ED2825047F8400754BA6 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244ED2725047F8400754BA6 /* Words.swift */; };
+		5244ED2D250481DC00754BA6 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244ED2C250481DC00754BA6 /* Grid.swift */; };
+		5244ED2F2504821200754BA6 /* GridOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244ED2E2504821200754BA6 /* GridOverlay.swift */; };
+		5244ED31250482F600754BA6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244ED30250482F600754BA6 /* MenuViewController.swift */; };
+		5244ED332504928500754BA6 /* GridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244ED322504928500754BA6 /* GridCollectionViewCell.swift */; };
+		5244ED352504A77500754BA6 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244ED342504A77500754BA6 /* DoubleExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,12 @@
 		5244ED1E2502C44C00754BA6 /* WordSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSearch.swift; sourceTree = "<group>"; };
 		5244ED222502C51500754BA6 /* WordSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSearchController.swift; sourceTree = "<group>"; };
 		5244ED252504231600754BA6 /* WordSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSearchViewController.swift; sourceTree = "<group>"; };
+		5244ED2725047F8400754BA6 /* Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
+		5244ED2C250481DC00754BA6 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		5244ED2E2504821200754BA6 /* GridOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridOverlay.swift; sourceTree = "<group>"; };
+		5244ED30250482F600754BA6 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		5244ED322504928500754BA6 /* GridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewCell.swift; sourceTree = "<group>"; };
+		5244ED342504A77500754BA6 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +72,7 @@
 		5244ED062502BEDA00754BA6 /* WordSearch */ = {
 			isa = PBXGroup;
 			children = (
+				5244ED2B250481CB00754BA6 /* HelperFiles */,
 				5244ED1D2502C43B00754BA6 /* Models */,
 				5244ED1C2502BEFC00754BA6 /* Controllers */,
 				5244ED1B2502BEEE00754BA6 /* Views */,
@@ -90,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				5244ED1E2502C44C00754BA6 /* WordSearch.swift */,
+				5244ED2725047F8400754BA6 /* Words.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -105,6 +119,8 @@
 		5244ED212502C4F200754BA6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5244ED322504928500754BA6 /* GridCollectionViewCell.swift */,
+				5244ED30250482F600754BA6 /* MenuViewController.swift */,
 				5244ED252504231600754BA6 /* WordSearchViewController.swift */,
 			);
 			path = "View Controllers";
@@ -119,6 +135,16 @@
 				5244ED152502BEDE00754BA6 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		5244ED2B250481CB00754BA6 /* HelperFiles */ = {
+			isa = PBXGroup;
+			children = (
+				5244ED2C250481DC00754BA6 /* Grid.swift */,
+				5244ED2E2504821200754BA6 /* GridOverlay.swift */,
+				5244ED342504A77500754BA6 /* DoubleExtension.swift */,
+			);
+			path = HelperFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,8 +219,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5244ED082502BEDA00754BA6 /* AppDelegate.swift in Sources */,
+				5244ED31250482F600754BA6 /* MenuViewController.swift in Sources */,
 				5244ED0A2502BEDA00754BA6 /* SceneDelegate.swift in Sources */,
+				5244ED352504A77500754BA6 /* DoubleExtension.swift in Sources */,
 				5244ED1F2502C44C00754BA6 /* WordSearch.swift in Sources */,
+				5244ED332504928500754BA6 /* GridCollectionViewCell.swift in Sources */,
+				5244ED2D250481DC00754BA6 /* Grid.swift in Sources */,
+				5244ED2825047F8400754BA6 /* Words.swift in Sources */,
+				5244ED2F2504821200754BA6 /* GridOverlay.swift in Sources */,
 				5244ED232502C51500754BA6 /* WordSearchController.swift in Sources */,
 				5244ED262504231600754BA6 /* WordSearchViewController.swift in Sources */,
 			);
