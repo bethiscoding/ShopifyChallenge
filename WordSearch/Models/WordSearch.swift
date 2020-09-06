@@ -6,7 +6,7 @@
 //  Copyright © 2020 Bethany M. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum PlacementType: CaseIterable {
     
@@ -73,14 +73,17 @@ class WordSearch {
     var words = ["Swift", "Kotlin", "ObjectiveC", "Variable", "Java", "Mobile"]
     var gridSize = 10
     var labels = [[Label]]()
-    var difficulty = Difficulty.easy
+    var difficulty = Difficulty.hard
     var numOfPages = 10
+    
+    // MARK: - Methods
     
     func makeGrid() {
         labels = (0 ..< gridSize).map { _ in
             (0 ..< gridSize).map { _ in Label() }
         }
             
+        placeWords()
         fillGaps()
         printGrid()
     }
@@ -126,7 +129,84 @@ class WordSearch {
     }
     
     private func tryPlacing(_ word: String, movement: (x: Int, y: Int)) -> Bool {
+        let xLength = (movement.x * (word.count - 1))
+        let yLength = (movement.y * (word.count - 1))
         
+        let rows = (0 ..< gridSize).shuffled()
+        let columns = (0 ..< gridSize).shuffled()
+        
+        for row in rows {
+            for column in columns {
+                let finalX = column + xLength
+                let finalY = row + yLength
+                
+                if finalX >= 0 && finalX < gridSize && finalY >= 0 && finalY < gridSize {
+                    if let returnValue = labels(fromX: column, y: row, word: word, movement: movement) {
+                        for (index, letter) in word.enumerated() {
+                            returnValue[index].letter = letter
+                        }
+                        
+                        return true
+                    }
+                }
+            }
+        }
+        
+        return false
+    }
+    
+    //double check that this works
+    private func place(_ word: String) -> Bool {
+        let formattedWord = word.replacingOccurrences(of: " ", with: "").uppercased()
+        
+        for type in difficulty.placementTypes {
+            if tryPlacing(formattedWord, movement: type.movement) {
+                return true
+            }
+        }
+        
+//        return difficulty.placementTypes.contains {
+//            tryPlacing(formattedWord, movement: $0.movement)
+//        }
+        
+        return false
+    }
+    
+    private func placeWords() -> [String] {
+        words.shuffle()
+        
+        var usedWords = [String]()
+        
+        for word in words {
+            if place(word) {
+                usedWords.append(word)
+            }
+        }
+        
+        return usedWords
+        
+        //return words.shuffled().filter(place)
+    }
+    
+    func render() -> Data {
+        let pageRect = CGRect(x: 0, y: 0, width: 612, height: 792)
+        let margin = pageRect.width / 10
+        let availableSpace = pageRect.width - (margin * 2)
+        let gridCellSize = availableSpace / CGFloat(gridSize)
+        let gridLetterFont = UIFont.systemFont(ofSize: 16)
+        let gridLetterStyle = NSMutableParagraphStyle()
+        gridLetterStyle.alignment = .center
+        
+        let gridLetterAttributes: [NSAttributedString.Key: Any] = [
+            .font: gridLetterFont,
+            .paragraphStyle: gridLetterStyle
+        ]
+        
+        let renderer = UIGraphicsPDFRenderer(bounds: pageRect)
+        
+        return renderer.pdfData { ctx in
+            
+        }
     }
     
 } //End
