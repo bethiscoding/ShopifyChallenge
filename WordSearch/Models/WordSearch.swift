@@ -58,10 +58,6 @@ enum Difficulty {
     }
 }
 
-//struct Word: Decodable {
-//    var text: String
-//}
-
 class Label {
     var letter: Character = " "
 }
@@ -69,12 +65,10 @@ class Label {
 class WordSearch {
     
     let allLetters = (65...90).map { Character(Unicode.Scalar($0)) }
-    //var words = [Word]()
     var words = ["Swift", "Kotlin", "ObjectiveC", "Variable", "Java", "Mobile"]
     var gridSize = 10
     var labels = [[Label]]()
     var difficulty = Difficulty.hard
-    //var numOfPages = 10
     
     var letters = [Character]()
     
@@ -158,7 +152,6 @@ class WordSearch {
         return false
     }
     
-    //double check that this works
     private func place(_ word: String) -> Bool {
         let formattedWord = word.replacingOccurrences(of: " ", with: "").uppercased()
         
