@@ -7,32 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E2F15BA0-D1F9-4307-A09E-750FB4104D51"
+            uuid = "6E26CD03-347F-4DCF-A394-363527245F07"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WordSearch/Controllers/View Controllers/WordSearchViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "selectCell(_:selected:)"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "position(from:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F14F0B4E-825C-45E4-8798-6B9E1DF55A45"
+            uuid = "21A688E7-0413-4346-B865-6C8C4FA4D5EA"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WordSearch/Controllers/View Controllers/WordSearchViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "didPan(toSelectCells:)"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "panHandling(gestureRecognizer:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
