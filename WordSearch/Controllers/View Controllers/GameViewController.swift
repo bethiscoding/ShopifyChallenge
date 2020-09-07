@@ -18,13 +18,13 @@ class GameViewController: UIViewController {
     @IBOutlet weak var gridCollectionView: UICollectionView!
     @IBOutlet weak var wordListCollectionView: WordListCollectionView!
 
-    lazy var gradientLayer: CAGradientLayer = CAGradientLayer()
-    lazy var gridGenerator: WordGridGenerator = {
-        return WordGridGenerator(words: words, row: gridSize, column: gridSize)
-    }()
     let gridSize = 10
     var grid: Grid = Grid()
     let words = ["SWIFT", "KOTLIN", "OBJECTIVEC", "VARIABLE", "JAVA", "MOBILE"]
+    lazy var gridGenerator: WordGridGenerator = {
+        return WordGridGenerator(words: words, row: gridSize, column: gridSize)
+    }()
+    
 
     private var elapsedSeconds: Double = 0 {
         didSet {
@@ -49,12 +49,6 @@ class GameViewController: UIViewController {
         let height = gridCollectionView.bounds.height / CGFloat(gridSize)
         return CGSize(width: width, height: height)
     }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        /// Because there's no layout constraint for a CALayer.
-        gradientLayer.frame = gridCollectionView.bounds
-    }
     
     // MARK: - Lifecycle
 
@@ -67,11 +61,11 @@ class GameViewController: UIViewController {
         loadGame()
     }
     
-    // MARK: - Actions
-
-    @IBAction func restartGame(_ sender: Any) {
-        restartGame()
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
     }
+    
+    // MARK: - Actions
 
     @IBAction func quit(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -140,13 +134,6 @@ class GameViewController: UIViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (_) in
             self.elapsedSeconds += 1
         })
-    }
-
-    fileprivate func restartGame() {
-        overlayView.reset()
-        wordListCollectionView.reset()
-        elapsedSeconds = 0
-        loadGame()
     }
 
     @objc func panHandling(gestureRecognizer: UIPanGestureRecognizer) {

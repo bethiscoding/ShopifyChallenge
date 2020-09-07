@@ -15,15 +15,15 @@ class GameWonViewController: UIViewController {
         setUpViews()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+    
     func setUpViews() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
         gradientLayer.colors = [UIColor.blue.cgColor, UIColor.systemPink.cgColor]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
-    @IBAction func menuButtonTapped(_ sender: UIButton) {
-        
     }
 
 } //End

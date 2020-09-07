@@ -9,10 +9,10 @@
 import UIKit
 
 class WordCollectionViewCell: UICollectionViewCell {
+        
+    @IBOutlet weak var label: UILabel!
     
     static let cellId = "WordCell"
-    
-    @IBOutlet weak var label: UILabel!
 
     func configure(with text: String, selected: Bool) {
         if selected {
@@ -21,16 +21,15 @@ class WordCollectionViewCell: UICollectionViewCell {
             let attrsDict = [
                 NSAttributedString.Key.strikethroughStyle: 2,
                 NSAttributedString.Key.foregroundColor: UIColor.black,
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)
                 ] as [NSAttributedString.Key : Any]
             attrString.addAttributes(attrsDict, range: NSRange(location: 0, length: text.count))
             label.attributedText = attrString
         } else {
             label.text = text
             label.textColor = UIColor.white
-            label.font = UIFont.systemFont(ofSize: 13)
+            label.font = UIFont.systemFont(ofSize: 14)
         }
-        //label.backgroundColor = isSelected ? UIColor.gray.withAlphaComponent(0.5) : UIColor.clear
     }
     
 } //End

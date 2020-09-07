@@ -9,7 +9,7 @@
 import UIKit
 
 class MenuViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
@@ -19,9 +19,13 @@ class MenuViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+    
     func setUpViews() {
         let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.view.bounds
+        gradientLayer.frame = self.view.frame
         gradientLayer.colors = [UIColor.blue.cgColor, UIColor.systemPink.cgColor]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }

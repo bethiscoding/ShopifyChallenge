@@ -10,12 +10,10 @@ import UIKit
 
 class WordListCollectionView: UICollectionView {
 
-    /// The left and right inset of the collection view
-    private let inset: CGFloat = 10
-    fileprivate let cellId = "WordCell"
+    let inset: CGFloat = 10
 
     /// This is computed to store states of the words if they are selected or not
-    fileprivate var wordSelectedMap: [String: Bool] = [:]
+    var wordSelectedMap: [String: Bool] = [:]
 
     var words: [String] = [] {
         didSet {
@@ -30,7 +28,7 @@ class WordListCollectionView: UICollectionView {
         dataSource = self
     }
 
-    /// A corrected word has been selected
+    /// A correct word has been selected
     func select(word: String) {
         guard let index = words.firstIndex(of: word) else {
             return
@@ -57,10 +55,12 @@ extension WordListCollectionView: UICollectionViewDataSource, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! WordCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WordCell", for: indexPath) as! WordCollectionViewCell
+        
         let word = words[indexPath.row]
         let isSelected = wordSelectedMap[word, default: false]
         cell.configure(with: word, selected: isSelected)
+        
         return cell
     }
 
