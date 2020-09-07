@@ -12,7 +12,6 @@ class GameViewController: UIViewController {
     
     // MARK: - Outlets & Properties
     
-    @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var overlayView: LineOverlay!
     @IBOutlet weak var gridCollectionView: UICollectionView!
@@ -74,14 +73,12 @@ class GameViewController: UIViewController {
     @IBAction func pauseToggle(_ sender: UIButton) {
         if isPaused {
             isPaused = false
-            sender.setImage(UIImage(named: "pause.fill"), for: .normal)
-            sender.tintColor = .white
+            sender.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         } else {
             isPaused = true
-            sender.setImage(UIImage(named: "play.fill"), for: .normal)
-            sender.tintColor = .white
+            sender.setImage(UIImage(systemName: "play.fill"), for: .normal)
         }
-        blurView.isHidden = !isPaused
+        gridCollectionView.isHidden = isPaused
     }
     
     // MARK: - Methods
@@ -167,16 +164,15 @@ class GameViewController: UIViewController {
                 overlayView.acceptLastLine()
                 wordListCollectionView.select(word: word)
                 if overlayView.permanentLines.count == gridGenerator.words.count {
-                    /// Pause the time because user has won the game.
-                    //timer?.invalidate()
+                    ///User has won the game.
+                    timer?.invalidate()
                     
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let gameWonViewController = storyBoard.instantiateViewController(withIdentifier: "GameWonVC") as! GameWonViewController
                             self.present(gameWonViewController, animated: true, completion: nil)
                 }
             }
-            /// Remove the temp line
-            overlayView.removeTempLine()
+            //overlayView.removeTempLine()
         default: break
         }
     }

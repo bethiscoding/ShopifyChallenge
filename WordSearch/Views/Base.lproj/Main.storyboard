@@ -16,8 +16,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZm-kp-hDp">
-                                <rect key="frame" x="114.5" y="344.5" width="185" height="126"/>
-                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="80"/>
+                                <rect key="frame" x="114.5" y="369.5" width="185" height="116"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="80"/>
                                 <state key="normal" title="PLAY">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -50,22 +50,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="101" translatesAutoresizingMaskIntoConstraints="NO" id="iFP-Wc-u6G">
-                                <rect key="frame" x="91.5" y="287" width="231.5" height="241"/>
+                                <rect key="frame" x="81.5" y="292.5" width="251.5" height="230"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Win!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ll1-C2-VCM">
-                                        <rect key="frame" x="0.0" y="0.0" width="231.5" height="85"/>
-                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="251.5" height="78"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="60"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jY-HR-G16">
-                                        <rect key="frame" x="41.5" y="186" width="148" height="55"/>
-                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="30"/>
-                                        <state key="normal" title="Main Menu">
+                                        <rect key="frame" x="92.5" y="179" width="66" height="51"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
+                                        <state key="normal" title="Back">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="dLd-rU-6ml"/>
+                                            <action selector="backButtonTapped:" destination="8Wu-iO-apw" eventType="touchUpInside" id="GdQ-Al-XUZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -111,7 +111,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2bw-3l-aaH">
-                                <rect key="frame" x="0.0" y="44" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idz-Md-Zym">
                                         <rect key="frame" x="8" y="0.0" width="40" height="40"/>
@@ -155,7 +155,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ULE-rW-DHw">
-                                <rect key="frame" x="0.0" y="84" width="414" height="718"/>
+                                <rect key="frame" x="0.0" y="128" width="414" height="674"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="TEx-4y-rzM">
                                     <size key="itemSize" width="50" height="50"/>
@@ -194,18 +194,9 @@
                                 </connections>
                             </collectionView>
                             <view userInteractionEnabled="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Jzy-DE-Gmg" customClass="LineOverlay" customModule="WordSearch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="84" width="414" height="718"/>
+                                <rect key="frame" x="0.0" y="128" width="414" height="674"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5aI-Lp-vdl">
-                                <rect key="frame" x="0.0" y="84" width="414" height="718"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="aAh-YS-LAF">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="718"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <blurEffect style="dark"/>
-                            </visualEffectView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vBw-JH-nqf" customClass="WordListCollectionView" customModule="WordSearch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="802" width="414" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -248,21 +239,17 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="5aI-Lp-vdl" firstAttribute="centerX" secondItem="ULE-rW-DHw" secondAttribute="centerX" id="1XQ-Rm-56y"/>
                             <constraint firstItem="qG3-g3-8JT" firstAttribute="trailing" secondItem="2bw-3l-aaH" secondAttribute="trailing" id="48S-ct-XSG"/>
                             <constraint firstItem="ULE-rW-DHw" firstAttribute="leading" secondItem="qG3-g3-8JT" secondAttribute="leading" id="7Ea-bw-sC7"/>
                             <constraint firstItem="qG3-g3-8JT" firstAttribute="bottom" secondItem="vBw-JH-nqf" secondAttribute="bottom" id="8JF-t6-nzx"/>
                             <constraint firstItem="2bw-3l-aaH" firstAttribute="top" secondItem="qG3-g3-8JT" secondAttribute="top" id="Aa2-Ei-ZXl"/>
                             <constraint firstItem="Jzy-DE-Gmg" firstAttribute="top" secondItem="ULE-rW-DHw" secondAttribute="top" id="B04-tX-wNg"/>
                             <constraint firstItem="Jzy-DE-Gmg" firstAttribute="leading" secondItem="ULE-rW-DHw" secondAttribute="leading" id="FdM-uf-ONf"/>
-                            <constraint firstItem="5aI-Lp-vdl" firstAttribute="height" secondItem="ULE-rW-DHw" secondAttribute="height" id="HVi-rq-e2v"/>
                             <constraint firstItem="vBw-JH-nqf" firstAttribute="top" secondItem="ULE-rW-DHw" secondAttribute="bottom" id="MQn-II-m1n"/>
                             <constraint firstItem="qG3-g3-8JT" firstAttribute="trailing" secondItem="vBw-JH-nqf" secondAttribute="trailing" id="bZm-Uu-j2o"/>
                             <constraint firstItem="Jzy-DE-Gmg" firstAttribute="bottom" secondItem="ULE-rW-DHw" secondAttribute="bottom" id="cot-vn-u4A"/>
                             <constraint firstItem="Jzy-DE-Gmg" firstAttribute="trailing" secondItem="ULE-rW-DHw" secondAttribute="trailing" id="eeb-SS-kFf"/>
-                            <constraint firstItem="5aI-Lp-vdl" firstAttribute="centerY" secondItem="ULE-rW-DHw" secondAttribute="centerY" id="fOV-sN-IAI"/>
                             <constraint firstItem="ULE-rW-DHw" firstAttribute="top" secondItem="2bw-3l-aaH" secondAttribute="bottom" id="gHP-I7-oB4"/>
-                            <constraint firstItem="5aI-Lp-vdl" firstAttribute="width" secondItem="ULE-rW-DHw" secondAttribute="width" id="hg9-KO-iRa"/>
                             <constraint firstItem="vBw-JH-nqf" firstAttribute="leading" secondItem="qG3-g3-8JT" secondAttribute="leading" id="xdf-Zk-PTM"/>
                             <constraint firstItem="2bw-3l-aaH" firstAttribute="leading" secondItem="qG3-g3-8JT" secondAttribute="leading" id="yGV-Tp-DQY"/>
                             <constraint firstItem="qG3-g3-8JT" firstAttribute="trailing" secondItem="ULE-rW-DHw" secondAttribute="trailing" id="zVV-9k-QMc"/>
@@ -271,7 +258,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="GEj-dl-tG4"/>
                     <connections>
-                        <outlet property="blurView" destination="5aI-Lp-vdl" id="NgM-ou-El6"/>
                         <outlet property="gridCollectionView" destination="ULE-rW-DHw" id="6S6-fL-p03"/>
                         <outlet property="overlayView" destination="Jzy-DE-Gmg" id="pjW-Tf-6uW"/>
                         <outlet property="timerLabel" destination="UVY-Q4-Qwd" id="1Ui-EF-jK6"/>
@@ -280,12 +266,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bql-7y-JDp" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1816" y="130"/>
+            <point key="canvasLocation" x="1825" y="130"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="dLd-rU-6ml"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="pause.fill" catalog="system" width="116" height="128"/>
         <image name="xmark" catalog="system" width="128" height="113"/>

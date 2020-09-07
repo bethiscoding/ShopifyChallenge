@@ -25,5 +25,10 @@ class GameWonViewController: UIViewController {
         gradientLayer.colors = [UIColor.blue.cgColor, UIColor.systemPink.cgColor]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
+    
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 
 } //End
