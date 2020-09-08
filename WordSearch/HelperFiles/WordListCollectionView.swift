@@ -38,7 +38,6 @@ class WordListCollectionView: UICollectionView {
         reloadItems(at: [indexPath])
     }
 
-    /// Reset states of words and collection view
     func reset() {
         for key in wordSelectedMap.keys { wordSelectedMap[key] = false }
         reloadData()
@@ -65,6 +64,7 @@ extension WordListCollectionView: UICollectionViewDataSource, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let width = ((bounds.width - 2 * inset) - 20) / 3
         let height = bounds.height / 3
         return CGSize(width: width, height: height)

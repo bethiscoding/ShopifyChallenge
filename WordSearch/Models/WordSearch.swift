@@ -12,14 +12,12 @@ typealias Grid = [[Character]]
 
 fileprivate class CharacterRandomizer {
     
-    private var allLetters = (65...90).map { Character(Unicode.Scalar($0)) }
+    var allLetters = (65...90).map { Character(Unicode.Scalar($0)) }
     func randomChar() -> Character {
         return allLetters.randomElement()!
     }
 }
 
-/// Alias for a 2d-array
-/// with a helper function to fill out placeholders with random chars.
 fileprivate extension Grid {
     func randomizePlaceHolders() -> Grid {
         var grid = self
@@ -77,19 +75,11 @@ class WordGridGenerator {
         }
     }
 
-    /// Private class that holds a state of a grid
     private class State {
-        /// Current grid
         var grid: Grid
 
-        /// Remaining words.
-        /// Should pick a word and attempt to assign to the grid
         var words: [String]
-
-        /// Available directions to try
         var directions: [Direction]
-
-        /// Available positions to try
         var positions: [Int]
 
         init(grid: Grid, words: [String], directions: [Direction], positions: [Int]) {
@@ -101,11 +91,6 @@ class WordGridGenerator {
     }
 
     var words: [String] = []
-    /// Key format: "startRow:startCol:endRow:endCol"
-    /// Value: the corresponding word
-    /// We will fill this map during grid generation
-    /// This is efficient to get back the word when user is swiping
-    /// Where we only know the start and end position of the line.
     var wordsMap: [String: String] = [:]
     var nRow: Int = 10
     var nCol: Int = 10
@@ -121,21 +106,14 @@ class WordGridGenerator {
     static let placeholder: Character = "#"
 
     /// We declare this to be a static func to be used by other classes too
-    /// We can also define this as an extension method of String
     static func wordKey(for startPos: Position, and endPos: Position) -> String {
         return "\(startPos.row):\(startPos.col):\(endPos.row):\(endPos.col)"
     }
 
-    /// Just a helper function to compute the key from positions
-    /// and add the word to the words map.
-    private func add(word: String, startPos: Position, endPos: Position) {
+    func add(word: String, startPos: Position, endPos: Position) {
         wordsMap[WordGridGenerator.wordKey(for: startPos, and: endPos)] = word
     }
 
-    /// Attempt to assign a word to a grid starting from a position,
-    /// moving along a direction.
-    /// If we could assign the word, return the last position of the last char
-    /// To compute the words map.
     private func assignWord(
         grid: Grid,
         word: String,
@@ -170,15 +148,12 @@ class WordGridGenerator {
                 col += mStep.stepCol
                 idx += 1
             } else {
-                /// if it fails at an any step, return nil
                 return nil
             }
         }
         return (grid: dupGrid, lastPosition: lastPos)
     }
 
-    /// Main method of the class.
-    /// This generates a 2-d grid containing words in random positions and directions.
     public func generate() -> Grid? {
         let empty = Grid(repeating: [Character](repeating: WordGridGenerator.placeholder, count: nCol), count: nRow)
         let positions = Array(0..<(nRow * nCol)).shuffled()
@@ -199,8 +174,7 @@ class WordGridGenerator {
             var direction = state.directions.last
             state.directions = state.directions.dropLast()
             if direction == nil {
-                /// No direction worked at the position
-                /// So we try next position
+                /// No direction worked at the position, so we try next position
                 state.positions = state.positions.dropLast()
                 state.directions = Direction.allCases.shuffled()
                 direction = state.directions.last!

@@ -8,13 +8,10 @@
 
 import UIKit
 
-/// This view 1 temporary lines which is an attempt of the user
-/// And permanent lines which are corrected word
 class LineOverlay: UIView {
+    
     var tempLine: Line?
     var permanentLines: [Line] = []
-
-    /// Row and col should be set externally by the game configurator
     var row: Int = 0
     var col: Int = 0
 
@@ -26,33 +23,26 @@ class LineOverlay: UIView {
     }
 
     /// We define styles for temp lines and permanent lines
-    lazy private var selectingStyle: LineStyle = LineStyle(
+    lazy var selectingStyle: LineStyle = LineStyle(
         opacity: 0.5,
         lineWidth: min(cellSize.width, cellSize.height) * 0.8,
         strokeColor:
         UIColor.orange.cgColor
     )
 
-    lazy private var selectedStyle: LineStyle = LineStyle(
+    lazy var selectedStyle: LineStyle = LineStyle(
         opacity: 0.5,
         lineWidth: min(cellSize.width, cellSize.height) * 0.8,
         strokeColor:
         UIColor.green.cgColor
     )
 
-
-    /// Reset the overlay
-    #warning("change function name to resetOverlay")
-    func reset() {
+    func resetOverlay() {
         layer.sublayers?.forEach { $0.removeFromSuperlayer() }
         tempLine = nil
         permanentLines.removeAll()
     }
 
-
-    /// Start drawing the temp line
-    ///
-    /// - Parameter position: start position of the line
     func addTempLine(at position: Position) {
         tempLine = Line(style: selectingStyle)
         tempLine?.cellSize = cellSize
@@ -60,11 +50,6 @@ class LineOverlay: UIView {
         tempLine?.endPos = position
     }
 
-
-    /// Draw the line from start position to end position if it's valid.
-    ///
-    /// - Parameter position: target end position
-    /// - Returns: true if the line should be updated/drawn.
     func moveTempLine(to position: Position) -> Bool {
         if tempLine?.attempt(endPos: position) == true {
             tempLine?.draw(on: self)
@@ -73,13 +58,11 @@ class LineOverlay: UIView {
         return false
     }
 
-    /// Remove the temp line
     func removeTempLine() {
         self.tempLine?.removeFromSuperlayer()
         self.tempLine = nil
     }
 
-    /// User has selected a corrected word, convert to a permanent line
     func acceptLastLine() {
         if let permLine = tempLine {
             permLine.lineStyle = selectedStyle
@@ -89,10 +72,7 @@ class LineOverlay: UIView {
     }
 
     /// Draw function of a UIView object.
-    /// This is called when a line changes
-    /// Or even orientation changes and the content mode is set to `Redraw`.
-    ///
-    /// - Parameter rect: rect
+    /// This is called when a line changes or even orientation changes and the content mode is set to `Redraw`.
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         tempLine?.cellSize = cellSize

@@ -25,7 +25,7 @@ class GameViewController: UIViewController {
     }()
     
 
-    private var elapsedSeconds: Double = 0 {
+    var elapsedSeconds: Double = 0 {
         didSet {
             timerLabel.text = elapsedSeconds.asTime()
         }
@@ -41,7 +41,6 @@ class GameViewController: UIViewController {
         }
     }
 
-    /// We compute letter cell size. We then notify this to the overlay to draw the lines.
     /// This should be updated properly in case orientation changes.
     var cellSize: CGSize {
         let width = gridCollectionView.bounds.width / CGFloat(gridSize)
@@ -54,9 +53,6 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
-        setupWordListCollectionView()
-        setupGridCollectionView()
-        setupOverlayView()
         loadGame()
     }
     
@@ -83,7 +79,22 @@ class GameViewController: UIViewController {
     
     // MARK: - Methods
 
-    private func loadGame() {
+    func setUpViews() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.view.bounds
+        gradientLayer.colors = [UIColor.blue.cgColor, UIColor.systemPink.cgColor]
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        
+        let panGR = UIPanGestureRecognizer(target: self, action: #selector(panHandling(gestureRecognizer:)))
+        gridCollectionView.addGestureRecognizer(panGR)
+        
+        wordListCollectionView.words = gridGenerator.words
+        
+        overlayView.row = gridSize
+        overlayView.col = gridSize
+    }
+    
+    func loadGame() {
         DispatchQueue.global().async {
             if let grid = self.gridGenerator.generate() {
                 self.grid = grid
@@ -94,39 +105,13 @@ class GameViewController: UIViewController {
             }
         }
     }
-    
-    func setUpViews() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.view.bounds
-        gradientLayer.colors = [UIColor.blue.cgColor, UIColor.systemPink.cgColor]
-        self.view.layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
-    private func setupWordListCollectionView() {
-        wordListCollectionView.words = gridGenerator.words
-    }
-
-    private func setupGridCollectionView() {
-        /// Setup pan gesture
-        let panGR = UIPanGestureRecognizer(target: self, action: #selector(panHandling(gestureRecognizer:)))
-        gridCollectionView.addGestureRecognizer(panGR)
-    }
-
-    private func setupOverlayView() {
-        overlayView.row = gridSize
-        overlayView.col = gridSize
-    }
 
     /// Helper function to get row and col from an indexPath.
-    ///
-    /// - Parameter index: an index from an indexPath.
-    /// - Returns: row and col of the cell in the grid.
-    private func position(from index: Int) -> Position {
+    func position(from index: Int) -> Position {
         return Position(row: index / gridSize, col: index % gridSize)
     }
 
-    /// Start and display clock time.
-    private func startTimer() {
+    func startTimer() {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (_) in
             self.elapsedSeconds += 1
@@ -134,6 +119,7 @@ class GameViewController: UIViewController {
     }
 
     @objc func panHandling(gestureRecognizer: UIPanGestureRecognizer) {
+        
         let point = gestureRecognizer.location(in: gridCollectionView)
         guard let indexPath = gridCollectionView.indexPathForItem(at: point) else {
             return
@@ -144,9 +130,8 @@ class GameViewController: UIViewController {
         case .began:
             overlayView.addTempLine(at: pos)
             /// Select item to animate the cell
-            /// Since we set the collection view `selection mode` to single
-            /// This means only one letter is animated at a time.
-            /// So in `.ended` event, we just need to deselect one cell.
+            /// Since collection view `selection mode` set to single, this means only one letter is animated at a time.
+            /// So in `.ended` event, just need to deselect one cell.
             gridCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         case .changed:
             if overlayView.moveTempLine(to: pos) {
@@ -164,6 +149,7 @@ class GameViewController: UIViewController {
                 overlayView.acceptLastLine()
                 wordListCollectionView.select(word: word)
                 if overlayView.permanentLines.count == gridGenerator.words.count {
+                    
                     ///User has won the game.
                     timer?.invalidate()
                     
@@ -172,7 +158,7 @@ class GameViewController: UIViewController {
                             self.present(gameWonViewController, animated: true, completion: nil)
                 }
             }
-            //overlayView.removeTempLine()
+            overlayView.removeTempLine()
         default: break
         }
     }

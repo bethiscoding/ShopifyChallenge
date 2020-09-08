@@ -21,20 +21,15 @@ struct Position {
 
 class Line: CAShapeLayer {
 
-    /// This property is set externally to compute the
-    /// center point of the line
     var cellSize: CGSize = .zero
 
     var lineStyle: LineStyle = LineStyle(
         opacity: 0.5,
         lineWidth: 10,
-        strokeColor: UIColor.blue.cgColor
+        strokeColor: UIColor.orange.cgColor
     )
 
-    /// Start position of the line. It should be set once in touchesBegan or at the beginning of the gesture handling.
     var startPos: Position?
-
-    /// End position of the line. It should be updated as the gesture moves.
     var endPos: Position?
 
     init(style: LineStyle) {
@@ -51,23 +46,14 @@ class Line: CAShapeLayer {
         fatalError("init(coder:) has not been implemented")
     }
 
-
-    /// Convert a letter at row, col to center point of the cell
-    ///
-    /// - Parameter pos: Position object
-    /// - Returns: center point of the corresponding cell
-    private func point(at pos: Position) -> CGPoint {
+    func point(at pos: Position) -> CGPoint {
         return CGPoint(
             x: CGFloat(pos.col) * cellSize.width + cellSize.width / 2,
             y: CGFloat(pos.row) * cellSize.height + cellSize.height / 2)
     }
 
 
-    /// Check if start position and end position are horizontal
-    ///
-    /// - Parameter endPos: target end position of the line
-    /// - Returns: they are horizontal
-    private func isHorizontal(with endPos: Position) -> Bool {
+    func isHorizontal(with endPos: Position) -> Bool {
         guard let startPos = startPos else {
             return false
         }
@@ -75,22 +61,14 @@ class Line: CAShapeLayer {
     }
 
 
-    /// Check if start position and end position are vertical
-    ///
-    /// - Parameter endPos: target end position of the line
-    /// - Returns: they are vertical
-    private func isVertical(with endPos: Position) -> Bool {
+    func isVertical(with endPos: Position) -> Bool {
         guard let startPos = startPos else {
             return false
         }
         return startPos.col == endPos.col
     }
 
-    /// Check if start position and end position are diagonal
-    ///
-    /// - Parameter endPos: target end position of the line
-    /// - Returns: they are diagonal
-    private func isDiagonal(with endPos: Position) -> Bool {
+    func isDiagonal(with endPos: Position) -> Bool {
         guard let startPos = startPos else {
             return false
         }
@@ -126,9 +104,8 @@ class Line: CAShapeLayer {
         let tempPath = UIBezierPath()
         tempPath.move(to: point(at: startPos))
         tempPath.addLine(to: point(at: endPos))
-        // This is cell each time drawing
-        // In case we use different styles for each line
-        // at runtime.
+        /// This is cell each time drawing
+        /// In case we use different styles for each line at runtime.
         opacity = lineStyle.opacity
         lineCap = .round
         lineWidth = lineStyle.lineWidth
